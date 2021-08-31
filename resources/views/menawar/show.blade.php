@@ -13,7 +13,7 @@
             <div class="col-md-8">
                 <table>
                     <tr>
-                        <td>Nama Barang</td>
+                        <td>Nama Ikan</td>
                         <td>:</td>
                         <td>{{$lelang->nama_barang}}</td>
                     </tr>
@@ -80,6 +80,24 @@
     <div class="card-body">
         <h5 class="card-title">Anda Telah Menawar Barang Ini dengan harga @if($penawaran->penawaran_harga == null) 0 @else {{$penawaran->penawaran_harga}} @endif</h5>
     </div>
+    <form action="{{ route('update-penawaran',$penawaran->id_history )}}" method="post">
+    @csrf
+    @method('PUT')
+        <div class="card-body">
+        @if( Session::get('masuk') !="")
+                <div class='alert alert-success'><center><b>{{Session::get('masuk')}}</b></center></div>        
+        @endif
+        @if( Session::get('gagal') !="")
+                <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>        
+        @endif
+            <div class="form-group">
+                <label for="">Update Penawaran Harga</label>
+                <input type="hidden" name="lelang_id" value="{{$lelang->id_lelang}}">
+                <input type="number" class="form-control" value="{{ $penawaran->penawaran_harga }}" name="penawaran_harga" required>
+            </div>
+            <center><input type="submit" class="btn btn-danger" value="Tawarkan"></center>
+        </div>
+    </form>
 </div>
 @endif
 
@@ -93,7 +111,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pelelang</th>
+                    <th>Pembeli</th>
                     <th>No Telp</th>
                     <th>Harga Penawaran</th>
                     <th>Status</th>

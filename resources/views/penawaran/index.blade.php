@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Barang</th>
-                    <th>Pelelang</th>
+                    <th>Nama Ikan</th>
+                    <th>Pembeli</th>
                     <th>No Telp</th>
                     <th>Harga Penawaran</th>
                     <th>Status</th>

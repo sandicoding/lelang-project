@@ -3,7 +3,7 @@
 <title>Dashboard | Lelang</title>
 <div class="card shadow mb-4">
 <div class="card-body">
-<h2 align="center">Barang yang di lelang</h2>
+<h2 align="center">Ikan yang di lelang</h2>
 </div>
 </div>
 @if( Session::get('berhasil') !="")

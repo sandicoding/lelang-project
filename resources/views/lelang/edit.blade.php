@@ -6,7 +6,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Edit Data</h6>
     </div>
     <div class="card-body">
-        <form action="/lelang/update" method="post" enctype="multipart/form-data">
+        <form action="{{ route('lelang-update')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Barang</label>

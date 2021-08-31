@@ -57,7 +57,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pelelang</th>
+                    <th>Pembeli</th>
                     <th>No Telp</th>
                     <th>Harga Penawaran</th>
                     <th>Status</th>

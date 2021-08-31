@@ -51,7 +51,7 @@
                         <strong style="color:red">{{ $message }}</strong>
                     @enderror
                 <div class="form-group">
-                  <input type="number" name="telp" class="form-control form-control-user" id="exampleInputEmail" placeholder="No Telp">
+                  <input type="text" name="telp" class="form-control form-control-user" id="exampleInputEmail" placeholder="No Telp">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">

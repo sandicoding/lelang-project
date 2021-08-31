@@ -73,7 +73,7 @@ class MenawarController extends Controller
         
         if($request->penawaran_harga < $cek->harga_awal) {
             return redirect()->back()->with('gagal','Harga tidak boleh kurang dari harga awal');
-        }else{
+        }else {
         DB::table('history_lelang')->insert([
             'lelang_id'=>$request->lelang_id,
             'user_id'=>Auth::user()->id,
@@ -82,8 +82,29 @@ class MenawarController extends Controller
         ]);
 
         return redirect()->back()->with('masuk','Data Berhasil Di Input');
+        }
     }
+
+    public function updateMenawar(Request $request, $id)
+    {
+        $cek = DB::table('lelang')->where('id_lelang',$request->lelang_id)
+                ->join('barang',function($join){
+                    $join->on('lelang.barang_id','=','barang.id_barang');
+                })->first();
+        
+        if($request->penawaran_harga < $cek->harga_awal) {
+            return redirect()->back()->with('gagal','Harga tidak boleh kurang dari harga awal');
+        }else{
+        DB::table('history_lelang')->where('id_history',$id)->update([
+            'penawaran_harga'=>$request->penawaran_harga,
+            'status_lelang'=>'tunda'
+        ]);
+
+        return redirect()->back()->with('masuk','Penawaran Berhasil diupdate !');
+        }
     }
+
+
 
     public function edit($id)
     {

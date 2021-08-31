@@ -45,7 +45,7 @@ Route::get('/barang/show/{id}','BarangController@show');
 
 Route::get('/lelang','LelangController@index');
 Route::post('/lelang/store','LelangController@store');
-Route::post('/lelang/update','LelangController@update');
+Route::post('/lelang/update','LelangController@update')->name('lelang-update');
 Route::get('/lelang/edit/{id}','LelangController@edit');
 Route::get('/lelang/show/{id}','LelangController@show');
 
@@ -54,6 +54,7 @@ Route::post('/register/store','RegisterController@store4');
 
 Route::get('/menawar/show/{id}','MenawarController@show');
 Route::post('/menawar/store','MenawarController@store');
+Route::put('/menawar/update/{id}','MenawarController@updateMenawar')->name('update-penawaran');
 Route::get('/menawar/data','MenawarController@data');
 
 Route::get('/penawaran','PenawaranController@index');
