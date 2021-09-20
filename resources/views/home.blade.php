@@ -3,7 +3,7 @@
 <title>Dashboard | Lelang</title>
 
 @if( Session::get('berhasil') !="")
-<div class='alert alert-success'><center><b>{{Session::get('berhasil')}}</b></center></div>        
+<div class='alert alert-success'><center><b>{{Session::get('berhasil')}}</b></center></div>
 @endif
 <div class="row">
 
@@ -30,8 +30,8 @@
     <div class="card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Barang</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$jumlah_barang}}</div>
+          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah ikan</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$jumlah_ikan}}</div>
         </div>
         <div class="col-auto">
           <i class="fas fa-university fa-2x text-gray-300"></i>
@@ -96,17 +96,17 @@
               @foreach ($data as $i => $u)
                   <tr>
                       <td>{{++$i}}</td>
-                      <td>{{$u->nama_barang}}</td>
+                      <td>{{$u->nama_ikan}}</td>
                       <td>{{$u->name}}</td>
                       <td>{{$u->telp}}</td>
                       <td>{{$u->penawaran_harga}}</td>
                       <td>{{$u->status_lelang}}</td>
-                     
+
                   </tr>
                   @endforeach
               </tbody>
           </table>
-        
+
     </div>
 </div>
 @endsection

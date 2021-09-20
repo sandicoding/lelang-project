@@ -11,13 +11,13 @@
             <div class="form-group">
                 <label for="">Barang</label>
                 <input type="hidden" name="id_lelang" value="{{$lelang->id_lelang}}">
-                <select name="barang_id" class="select2 form-control" style="width:100%" required>
+                <select name="ikan_id" class="select2 form-control" style="width:100%" required>
                     <option value="" disabled selected>Pilih Barang</option>
-                    @foreach($barang as $b)
-                    @if($lelang->barang_id == $b->id_barang)
-                    <option value="{{$b->id_barang}}" selected>{{$b->nama_barang}}</option>
+                    @foreach($ikan as $b)
+                    @if($lelang->ikan_id == $b->id)
+                    <option value="{{$b->id}}" selected>{{$b->nama_ikan}}</option>
                     @else
-                    <option value="{{$b->id_barang}}">{{$b->nama_barang}}</option>
+                    <option value="{{$b->id}}">{{$b->nama_ikan}}</option>
                     @endif
                     @endforeach
                 </select>
@@ -25,6 +25,10 @@
             <div class="form-group">
                 <label for="">Tanggal Lelang</label>
                 <input type="date" name="tgl_lelang" class="form-control" value="{{$lelang->tgl_lelang}}" required>
+            </div>
+            <div class="form-group">
+                <label for="">Tanggal Tutup</label>
+                <input type="date" name="tgl_tutup" class="form-control" value="{{$lelang->tgl_tutup}}" required>
             </div>
             <div class="form-group">
                 <label for="">Status</label>

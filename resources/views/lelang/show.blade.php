@@ -8,14 +8,14 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{url('data_file/'.$lelang->gambar_barang)}}" style="width:300px;height:300px">
+                <img src="{{url('data_file/'.$lelang->gambar_ikan)}}" style="width:300px;height:300px">
             </div>
             <div class="col-md-8">
                 <table>
                     <tr>
                         <td>Nama Barang</td>
                         <td>:</td>
-                        <td>{{$lelang->nama_barang}}</td>
+                        <td>{{$lelang->nama_ikan}}</td>
                     </tr>
                     <tr>
                         <td>Tanggal Lelang</td>
@@ -28,9 +28,9 @@
                         <td>{{$lelang->harga_awal}}</td>
                     </tr>
                     <tr>
-                        <td>Deskripsi barang</td>
+                        <td>Deskripsi ikan</td>
                         <td>:</td>
-                        <td>{{$lelang->deskripsi_barang}}</td>
+                        <td>{{$lelang->deskripsi_ikan}}</td>
                     </tr>
                     <tr>
                         <td>Status</td>
@@ -50,7 +50,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Pelelang {{$lelang->nama_barang}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Pelelang {{$lelang->nama_ikan}}</h6>
     </div>
     <div class="card-body">
         <table class="table table-bordered"  id="dataTable">

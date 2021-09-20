@@ -37,11 +37,12 @@ Route::post('/masyarakat/store','UserController@store3');
 Route::post('/masyarakat/update','UserController@update3');
 Route::get('/masyarakat/edit/{id}','UserController@edit3');
 
-Route::get('/barang','BarangController@index');
-Route::post('/barang/store','BarangController@store');
-Route::post('/barang/update','BarangController@update');
-Route::get('/barang/edit/{id}','BarangController@edit');
-Route::get('/barang/show/{id}','BarangController@show');
+Route::get('/ikan','BarangController@index');
+Route::post('/ikan/store','BarangController@store');
+Route::post('/ikan/update','BarangController@update');
+Route::get('/ikan/edit/{id}','BarangController@edit');
+Route::get('/ikan/show/{id}','BarangController@show');
+Route::get('/ikan/delete/{id}','BarangController@delete');
 
 Route::get('/lelang','LelangController@index');
 Route::post('/lelang/store','LelangController@store');
@@ -57,7 +58,8 @@ Route::post('/menawar/store','MenawarController@store');
 Route::put('/menawar/update/{id}','MenawarController@updateMenawar')->name('update-penawaran');
 Route::get('/menawar/data','MenawarController@data');
 
-Route::get('/penawaran','PenawaranController@index');
+Route::get('/penawaran','PenawaranController@index')->name('penawaran');
+Route::get('/tawar','PenawaranController@filter')->name('filter-ikan');
 Route::get('/penawaran/status/{id}','PenawaranController@status');
 
 Route::post('/lap_lelang_input','LaporanController@lap_lelang');

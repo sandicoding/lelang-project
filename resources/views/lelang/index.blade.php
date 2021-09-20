@@ -8,13 +8,13 @@
     <div class="card-body">
         <div class="table-responsive">
             @if( Session::get('masuk') !="")
-            <div class='alert alert-success'><center><b>{{Session::get('masuk')}}</b></center></div>        
+            <div class='alert alert-success'><center><b>{{Session::get('masuk')}}</b></center></div>
             @endif
             @if( Session::get('update') !="")
-            <div class='alert alert-success'><center><b>{{Session::get('update')}}</b></center></div>        
+            <div class='alert alert-success'><center><b>{{Session::get('update')}}</b></center></div>
             @endif
             @if( Session::get('gagal') !="")
-            <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>        
+            <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>
             @endif
             <button class="btn btn-success" data-toggle="modal" data-target="#tambah">Tambah Data</button>
             <br>
@@ -28,6 +28,8 @@
                         <th>Harga Akhir</th>
                         <th>Pemenang</th>
                         <th>Gambar Barang</th>
+                        <th>Tanggal Lelang</th>
+                        <th>Tanggal Tutup</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -36,11 +38,13 @@
                     @foreach ($lelang as $i => $u)
                     <tr>
                         <td>{{++$i}}</td>
-                        <td>{{$u->nama_barang}}</td>
-                        <td>{{$u->harga_awal}}</td>
+                        <td>{{$u->nama_ikan}}</td>
+                        <td>@currency($u->harga_awal)</td>
                         <td>{{$u->harga_akhir}}</td>
                         <td>{{$users->where('id', $u->lelang_masyarakat_id)->first()->name ?? 'Belum Ada' }}</td>
-                        <td><img src="{{url('data_file/'.$u->gambar_barang)}}" style="width:100px;height:100px"></td>
+                        <td><img src="{{url('data_file/'.$u->gambar_ikan)}}" style="width:100px;height:100px"></td>
+                        <td>{{ $u->tgl_lelang }}</td>
+                        <td>{{ $u->tgl_tutup }}</td>
                         <td>{{$u->status}}</td>
                         <td><a href="/lelang/edit/{{ $u->id_lelang}}" class="btn btn-warning btn-sm ml-2">Edit</a>
                         <a href="/lelang/show/{{ $u->id_lelang}}" class="btn btn-primary btn-sm ml-2">Show</a>
@@ -67,17 +71,21 @@
     <form action="/lelang/store" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="">Barang</label>
-            <select name="barang_id" class="select2 form-control" style="width:100%" required>
+            <label for="">Ikan</label>
+            <select name="ikan_id" class="select2 form-control" style="width:100%" required>
                 <option value="" disabled selected>Pilih Barang</option>
-                @foreach($barang as $b)
-                <option value="{{$b->id_barang}}">{{$b->nama_barang}}</option>
+                @foreach($ikan as $b)
+                <option value="{{$b->id}}">{{$b->nama_ikan}}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="">Tanggal Lelang</label>
             <input type="date" name="tgl_lelang" class="form-control"  required>
+        </div>
+        <div class="form-group">
+            <label for="">Tanggal Tutup Lelang</label>
+            <input type="date" name="tgl_tutup" class="form-control"  required>
         </div>
     </div>
     <div class="modal-footer">

@@ -8,13 +8,13 @@
     <div class="card-body">
         <div class="table-responsive">
             @if( Session::get('masuk') !="")
-            <div class='alert alert-success'><center><b>{{Session::get('masuk')}}</b></center></div>        
+            <div class='alert alert-success'><center><b>{{Session::get('masuk')}}</b></center></div>
             @endif
             @if( Session::get('update') !="")
-            <div class='alert alert-success'><center><b>{{Session::get('update')}}</b></center></div>        
+            <div class='alert alert-success'><center><b>{{Session::get('update')}}</b></center></div>
             @endif
             @if( Session::get('gagal') !="")
-            <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>        
+            <div class='alert alert-danger'><center><b>{{Session::get('gagal')}}</b></center></div>
             @endif
             <button class="btn btn-success" data-toggle="modal" data-target="#tambah">Tambah Data</button>
             <br>
@@ -31,15 +31,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($barang as $i => $u)
+                    @foreach ($ikan as $i => $u)
                     <tr>
                         <td>{{++$i}}</td>
-                        <td>{{$u->nama_barang}}</td>
+                        <td>{{$u->nama_ikan}}</td>
                         <td>{{$u->tgl}}</td>
-                        <td>{{$u->harga_awal}}</td>
-                        <td><img src="{{url('data_file/'.$u->gambar_barang)}}" style="width:100px;height:100px"></td>
-                        <td><a href="/barang/edit/{{ $u->id_barang}}" class="btn btn-warning btn-sm ml-2">Edit</a>
-                        <a href="/barang/show/{{ $u->id_barang}}" class="btn btn-primary btn-sm ml-2">Show</a>
+                        <td>@currency($u->harga_awal)</td>
+                        <td><img src="{{url('data_file/'.$u->gambar_ikan)}}" style="width:100px;height:100px"></td>
+                        <td><a href="/ikan/edit/{{ $u->id}}" class="btn btn-warning btn-sm ml-2">Edit</a>
+                        <a href="/ikan/show/{{ $u->id}}" class="btn btn-primary btn-sm ml-2">Show</a>
+                        <a href="/ikan/delete/{{ $u->id}}" class="btn btn-danger btn-sm ml-2">Delete</a>
                         </td>
                     </tr>
                     @endforeach
@@ -60,11 +61,11 @@
         </button>
     </div>
     <div class="modal-body">
-    <form action="/barang/store" method="post" enctype="multipart/form-data">
+    <form action="/ikan/store" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="">Nama</label>
-            <input type="text" name="nama_barang" class="form-control"  required>
+            <input type="text" name="nama_ikan" class="form-control"  required>
         </div>
         <div class="form-group">
             <label for="">Tanggal</label>
@@ -76,12 +77,12 @@
         </div>
         <div class="form-group">
             <label for="">Gambar</label>
-            <input type="file" name="gambar_barang" class="form-control"  required>
+            <input type="file" name="gambar_ikan" class="form-control"  required>
         </div>
         <div class="form-group">
             <label for="">Deskripsi</label>
-            <input type="text" name="deskripsi_barang" class="form-control"  required>
-        </div>  
+            <input type="text" name="deskripsi_ikan" class="form-control"  required>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -23,33 +23,33 @@ class BarangController extends Controller
 
     public function index()
     {
-        
-        $barang = DB::table('barang')->get();
-        return view('barang/index',compact('barang'));
+
+        $ikan = DB::table('tb_ikan')->get();
+        return view('ikan/index',compact('ikan'));
     }
 
     public function store(Request $request)
     {
-        $cekgambar_barang = Validator::make($request->all(), [
-            'gambar_barang' => 'required|file|image|mimes:jpeg,png,jpg|max:10000',
+        $cekgambar_ikan = Validator::make($request->all(), [
+            'gambar_ikan' => 'required|file|image|mimes:jpeg,png,jpg|max:10000',
         ]);
-        
-        if ($cekgambar_barang->fails()) {
+
+        if ($cekgambar_ikan->fails()) {
             return redirect()->back()->with('gagal', 'Gagal Upload, File harus berbentuk jpg/png/jpeg ');
         }
 
-        $gambar_barang = $request->file('gambar_barang');
-        $size = $gambar_barang->getSize();
-        $nama_gambar_barang = time() . "_" . $gambar_barang->getClientOriginalName();
-        $tujuan_upload_gambar_barang = 'data_file';
-        $gambar_barang->move($tujuan_upload_gambar_barang, $nama_gambar_barang);
+        $gambar_ikan = $request->file('gambar_ikan');
+        $size = $gambar_ikan->getSize();
+        $nama_gambar_ikan = time() . "_" . $gambar_ikan->getClientOriginalName();
+        $tujuan_upload_gambar_ikan = 'data_file';
+        $gambar_ikan->move($tujuan_upload_gambar_ikan, $nama_gambar_ikan);
 
-        DB::table('barang')->insert([
-            'nama_barang'=>$request->nama_barang,
+        DB::table('tb_ikan')->insert([
+            'nama_ikan'=>$request->nama_ikan,
             'tgl'=>$request->tgl,
             'harga_awal'=>$request->harga_awal,
-            'gambar_barang'=>$nama_gambar_barang,
-            'deskripsi_barang'=>$request->deskripsi_barang
+            'gambar_ikan'=>$nama_gambar_ikan,
+            'deskripsi_ikan'=>$request->deskripsi_ikan
         ]);
 
         return redirect()->back()->with('masuk','Data Berhasil Di Input');
@@ -57,54 +57,61 @@ class BarangController extends Controller
 
     public function edit($id)
     {
-        $barang = DB::table('barang')->where('id_barang',$id)->first();
-        return view('barang/edit',compact('barang'));
+        $ikan = DB::table('tb_ikan')->where('id',$id)->first();
+        return view('ikan/edit',compact('ikan'));
     }
 
     public function show($id)
     {
-        $barang = DB::table('barang')->where('id_barang',$id)->first();
-        return view('barang/show',compact('barang'));
+        $ikan = DB::table('tb_ikan')->where('id',$id)->first();
+        return view('ikan/show',compact('ikan'));
     }
 
     public function update(Request $request)
     {
-        if($request->gambar_barang == null){
-            DB::table('barang')->where('id_barang',$request->id_barang)->update([
-                'nama_barang'=>$request->nama_barang,
+        if($request->gambar_ikan == null){
+            DB::table('tb_ikan')->where('id',$request->id)->update([
+                'nama_ikan'=>$request->nama_ikan,
                 'tgl'=>$request->tgl,
                 'harga_awal'=>$request->harga_awal,
-                'deskripsi_barang'=>$request->deskripsi_barang
+                'deskripsi_ikan'=>$request->deskripsi_ikan
             ]);
         }
         else
         {
-            
-            $cekgambar_barang = Validator::make($request->all(), [
-                'gambar_barang' => 'required|file|image|mimes:jpeg,png,jpg|max:10000',
+
+            $cekgambar_ikan = Validator::make($request->all(), [
+                'gambar_ikan' => 'required|file|image|mimes:jpeg,png,jpg|max:10000',
             ]);
-            
-            if ($cekgambar_barang->fails()) {
+
+            if ($cekgambar_ikan->fails()) {
                 return redirect()->back()->with('gagal', 'Gagal Upload, File harus berbentuk jpg/png/jpeg ');
             }
-    
-            $gambar_barang = $request->file('gambar_barang');
-            $size = $gambar_barang->getSize();
-            $nama_gambar_barang = time() . "_" . $gambar_barang->getClientOriginalName();
-            $tujuan_upload_gambar_barang = 'data_file';
-            $gambar_barang->move($tujuan_upload_gambar_barang, $nama_gambar_barang);
-        
-        DB::table('barang')->where('id_barang',$request->id_barang)->update([
-            'nama_barang'=>$request->nama_barang,
+
+            $gambar_ikan = $request->file('gambar_ikan');
+            $size = $gambar_ikan->getSize();
+            $nama_gambar_ikan = time() . "_" . $gambar_ikan->getClientOriginalName();
+            $tujuan_upload_gambar_ikan = 'data_file';
+            $gambar_ikan->move($tujuan_upload_gambar_ikan, $nama_gambar_ikan);
+
+        DB::table('tb_ikan')->where('id',$request->id)->update([
+            'nama_ikan'=>$request->nama_ikan,
             'tgl'=>$request->tgl,
             'harga_awal'=>$request->harga_awal,
-            'gambar_barang'=>$nama_gambar_barang,
-            'deskripsi_barang'=>$request->deskripsi_barang
+            'gambar_ikan'=>$nama_gambar_ikan,
+            'deskripsi_ikan'=>$request->deskripsi_ikan
         ]);
     }
 
-        return redirect('barang')->with('update','Data Berhasil Di Update');
+        return redirect('ikan')->with('update','Data Berhasil Di Update');
     }
 
-    
+
+    public function delete($id)
+    {
+        $ikan = DB::table('tb_ikan')->where('id',$id)->delete();
+        return redirect('ikan')->with('gagal','Data Berhasil Di delete');
+    }
+
+
 }

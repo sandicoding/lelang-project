@@ -88,10 +88,10 @@
           <span>Data Masyarakat</span></a>
       </li>
 
-      <li class="nav-item {{ (request()->is('barang*')) ? 'active' : '' }}">
-        <a class="nav-link" href="{{url('barang')}}">
+      <li class="nav-item {{ (request()->is('ikan*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{url('ikan')}}">
           <i class="fas fa-fw fa-database"></i>
-          <span>Data Barang</span></a>
+          <span>Data Ikan</span></a>
       </li>
 
       <li class="nav-item {{ (request()->is('lap_lelang*')) ? 'active' : '' }} {{ (request()->is('lap_history*')) ? 'active' : '' }} ">
@@ -115,10 +115,10 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-      <li class="nav-item {{ (request()->is('barang*')) ? 'active' : '' }}">
-        <a class="nav-link" href="{{url('barang')}}">
+      <li class="nav-item {{ (request()->is('ikan*')) ? 'active' : '' }}">
+        <a class="nav-link" href="{{url('ikan')}}">
           <i class="fas fa-fw fa-database"></i>
-          <span>Data Barang</span></a>
+          <span>Data Ikan</span></a>
       </li>
 
       <li class="nav-item {{ (request()->is('lelang*')) ? 'active' : '' }}">

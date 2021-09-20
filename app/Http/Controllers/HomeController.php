@@ -17,14 +17,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-   
+
     public function index()
     {
         if(Auth::user()->level == 'masyarakat'){
-        
+
         $lelang = DB::table('lelang')->where('status','dibuka')
-                ->join('barang',function($join){
-                    $join->on('lelang.barang_id','=','barang.id_barang');
+                ->join('tb_ikan',function($join){
+                    $join->on('lelang.ikan_id','=','tb_ikan.id');
                 })->get();
 
         return view('home2',compact('lelang'));
@@ -32,7 +32,7 @@ class HomeController extends Controller
     else{
 
         $jumlah_petugas=DB::table('tb_petugas')->count();
-        $jumlah_barang=DB::table('barang')->count();
+        $jumlah_ikan=DB::table('tb_ikan')->count();
         $jumlah_lelang=DB::table('lelang')->count();
         $jumlah_penawar=DB::table('history_lelang')->count();
 
@@ -46,12 +46,12 @@ class HomeController extends Controller
                 ->join('lelang',function($join){
                     $join->on('history_lelang.lelang_id','=','lelang.id_lelang');
                 })
-                ->join('barang',function($join){
-                    $join->on('lelang.barang_id','=','barang.id_barang');
+                ->join('tb_ikan',function($join){
+                    $join->on('lelang.ikan_id','=','tb_ikan.id');
                 })->get();
 
 
-        return view('home',compact('jumlah_petugas','jumlah_barang','jumlah_lelang','jumlah_penawar','data'));
+        return view('home',compact('jumlah_petugas','jumlah_ikan','jumlah_lelang','jumlah_penawar','data'));
     }
     }
 }

@@ -8,29 +8,29 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{url('data_file/'.$barang->gambar_barang)}}" style="width:300px;height:300px">
+                <img src="{{url('data_file/'.$ikan->gambar_ikan)}}" style="width:300px;height:300px">
             </div>
             <div class="col-md-8">
                 <table>
                     <tr>
                         <td>Nama Barang</td>
                         <td>:</td>
-                        <td>{{$barang->nama_barang}}</td>
+                        <td>{{$ikan->nama_ikan}}</td>
                     </tr>
                     <tr>
                         <td>Tanggal</td>
                         <td>:</td>
-                        <td>{{$barang->tgl}}</td>
+                        <td>{{$ikan->tgl}}</td>
                     </tr>
                     <tr>
                         <td>Harga Awal</td>
                         <td>:</td>
-                        <td>{{$barang->harga_awal}}</td>
+                        <td>{{$ikan->harga_awal}}</td>
                     </tr>
                     <tr>
-                        <td>Deskripsi barang</td>
+                        <td>Deskripsi ikan</td>
                         <td>:</td>
-                        <td>{{$barang->deskripsi_barang}}</td>
+                        <td>{{$ikan->deskripsi_ikan}}</td>
                     </tr>
                 </table>
             </div>

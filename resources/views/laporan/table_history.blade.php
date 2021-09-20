@@ -13,12 +13,12 @@
             @foreach ($history_lelang as $i => $u)
                 <tr>
                     <td>{{++$i}}</td>
-                    <td>{{$u->nama_barang}}</td>
+                    <td>{{$u->nama_ikan}}</td>
                     <td>{{$u->name}}</td>
                     <td>{{$u->telp}}</td>
                     <td>{{$u->penawaran_harga}}</td>
                     <td>{{$u->status_lelang}}</td>
-                   
+
                 </tr>
                 @endforeach
             </tbody>

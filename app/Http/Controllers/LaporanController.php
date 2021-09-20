@@ -20,8 +20,8 @@ class LaporanController extends Controller
     public function lap_lelang(Request $request)
     {
         $lelang = DB::table("lelang")->whereBetween('tgl_lelang',[$request->awal,$request->akhir])
-            ->join('barang', function ($join) {
-                $join->on('lelang.barang_id', '=', 'barang.id_barang');
+            ->join('tb_ikan', function ($join) {
+                $join->on('lelang.ikan_id', '=', 'tb_ikan.id');
             })
             ->join('tb_masyarakat', function ($join) {
                 $join->on('lelang.lelang_masyarakat_id', '=', 'tb_masyarakat.id_masyarakat');
@@ -33,7 +33,7 @@ class LaporanController extends Controller
             $hitung=count($lelang);
             $req1=$request->awal;
             $req2=$request->akhir;
-        
+
         $users =DB::table('users')->get();
 
         return view('laporan.lelang', compact('lelang','req1','req2','hitung','users'));
@@ -41,13 +41,13 @@ class LaporanController extends Controller
 
     public function lap_history(Request $request)
     {
-        
+
         $history_lelang = DB::table("history_lelang")->where('status_lelang',$request->status_lelang)
                         ->join('lelang', function ($join) {
                             $join->on('history_lelang.lelang_id', '=', 'lelang.id_lelang');
                         })
-                        ->join('barang', function ($join) {
-                            $join->on('lelang.barang_id', '=', 'barang.id_barang');
+                        ->join('tb_ikan', function ($join) {
+                            $join->on('lelang.ikan_id', '=', 'tb_ikan.id');
                         })
                         ->join('users', function ($join) {
                             $join->on('history_lelang.user_id', '=', 'users.id');
@@ -64,20 +64,20 @@ class LaporanController extends Controller
 
 
 
-    
+
     public function export_lelang(Request $request)
     {
         $data = DB::table("lelang")->whereBetween('tgl_lelang',[$request->awal,$request->akhir])
-            ->join('barang', function ($join) {
-                $join->on('lelang.barang_id', '=', 'barang.id_barang');
-            }) 
+            ->join('tb_ikan', function ($join) {
+                $join->on('lelang.ikan_id', '=', 'tb_ikan.id');
+            })
             ->join('tb_masyarakat', function ($join) {
                 $join->on('lelang.lelang_masyarakat_id', '=', 'tb_masyarakat.id_masyarakat');
             })
             ->join('tb_petugas', function ($join) {
                 $join->on('lelang.lelang_petugas_id', '=', 'tb_petugas.id_petugas');
             })->get();
-          
+
 
         return Excel::download(new LaporanLelang($data), 'laporan_lelang.xlsx');
     }
@@ -88,8 +88,8 @@ class LaporanController extends Controller
                 ->join('lelang', function ($join) {
                     $join->on('history_lelang.lelang_id', '=', 'lelang.id_lelang');
                 })
-                ->join('barang', function ($join) {
-                    $join->on('lelang.barang_id', '=', 'barang.id_barang');
+                ->join('tb_ikan', function ($join) {
+                    $join->on('lelang.ikan_id', '=', 'tb_ikan.id');
                 })
                 ->join('users', function ($join) {
                     $join->on('history_lelang.user_id', '=', 'users.id');
@@ -100,5 +100,5 @@ class LaporanController extends Controller
         return Excel::download(new LaporanHistory($data), 'laporan_history.xlsx');
     }
 
-  
+
 }
